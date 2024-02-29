@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from 'react';
+import { notifyInfo } from "./FunctionComponent";
 
 const Background = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -11,7 +12,7 @@ const Background = () => {
     let konamiIndex = 0;
 
     useEffect(() => {
-        const updateMousePosition = (event) => {
+        const updateMousePosition = (event: any) => {
             setMousePosition({ x: event.clientX, y: event.clientY });
         };
 
@@ -23,10 +24,11 @@ const Background = () => {
     }, []);
 
     useEffect(() => {
-        const checkKonamiCode = (event) => {
+        const checkKonamiCode = (event: any) => {
             if (event.key === konamiCode[konamiIndex]) {
                 konamiIndex++;
                 if (konamiIndex === konamiCode.length) {
+                    notifyInfo('Konami Cheat activated');
                     setCheats(true);
                     konamiIndex = 0; // Reset for potential reuse
                 }
@@ -43,37 +45,39 @@ const Background = () => {
     }, []);
 
     useEffect(() => {
-        const canvas = document.getElementById('background-playground');
-        const ctx = canvas.getContext('2d');
-        
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        const canvas = document.getElementById('background-playground') as HTMLCanvasElement | null;
+        const ctx = canvas?.getContext('2d');
 
-        let frameId;
+        if (canvas && ctx) {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
 
-        const draw = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let frameId: number;
 
-            if (cheats) {
-                const hue = colorIndex % 360;
-                ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
-                setColorIndex(colorIndex + 0.025);
-            } else {
-                ctx.fillStyle = 'white';
-            }
+            const draw = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            ctx.beginPath();
-            ctx.arc(mousePosition.x, mousePosition.y, 100, 0, 2 * Math.PI);
-            ctx.fill();
+                if (cheats) {
+                    const hue = colorIndex % 360;
+                    ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+                    setColorIndex(colorIndex + 0.025);
+                } else {
+                    ctx.fillStyle = 'white';
+                }
 
-            frameId = requestAnimationFrame(draw);
-        };
+                ctx.beginPath();
+                ctx.arc(mousePosition.x, mousePosition.y, 100, 0, 2 * Math.PI);
+                ctx.fill();
 
-        draw();
+                frameId = requestAnimationFrame(draw);
+            };
 
-        return () => {
-            cancelAnimationFrame(frameId);
-        };
+            draw();
+
+            return () => {
+                cancelAnimationFrame(frameId);
+            };
+        }
     }, [mousePosition, colorIndex, cheats]);
 
     return (

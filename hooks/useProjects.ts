@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react"
 
+interface Project {
+    id: number;
+    title: string;
+    description: string;
+    github: string | undefined;
+    showcase: string | undefined;
+    image: string | undefined;
+}
+
 export const useProjects = () => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<Project[] | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 

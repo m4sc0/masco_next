@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 
+interface SandboxProject {
+    id: number;
+    title: string;
+    endpoint: string;
+    description: string | undefined;
+    image: string | undefined;
+}
+
 export const useSandboxProjects = () => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<SandboxProject[] | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 

@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 
+interface Skill {
+    id: number;
+    name: string;
+}
+
 export const useSkills = () => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<Skill[] | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 

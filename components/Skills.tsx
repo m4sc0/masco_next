@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useSkills } from "../hooks/useSkills";
+import { notifyError } from "./FunctionComponent";
 
 const Skills = () => {
     const { data, isLoading, error } = useSkills();
@@ -11,6 +12,7 @@ const Skills = () => {
     }
 
     if (error) {
+        notifyError('Loading skills failed');
         return <div>Error loading skills! {error}</div>
     }
 
