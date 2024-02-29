@@ -1,0 +1,78 @@
+body {
+    background-color: #181818;
+    color: #CCCCCC;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+canvas {
+    display: block;
+    margin: 0 auto 30px;
+    border-radius: 8px;
+    background-color: #242424;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+div {
+    text-align: center;
+    margin-top: 20px;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: calc(100% - 80px);
+    height: 16px;
+    border-radius: 8px;
+    background: #555;
+    outline: none;
+    padding: 0;
+    margin: 10px 40px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background: #1E90FF;
+    cursor: pointer;
+    box-shadow: 0 0 4px #000;
+    margin-top: -4px; /* You need to adjust this if you change the height of the slider */
+}
+
+input[type="range"]::-moz-range-thumb {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background: #1E90FF;
+    cursor: pointer;
+    box-shadow: 0 0 4px #000;
+}
+
+input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 16px;
+    cursor: pointer;
+    animate: 0.2s;
+    border-radius: 8px;
+    background: #555;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+input[type="range"]:focus {
+    outline: none;
+}
+
+div > div {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #E6E6E6;
+}
+
+div > div span {
+    color: #ADD8E6;
+}

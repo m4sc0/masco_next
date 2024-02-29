@@ -8,7 +8,7 @@ export default function Header() {
                 <div>
                     <HeaderItem title="Home" endpoint="/" />
                     <HeaderItem title="Projects" endpoint="/#projects" />
-                    <HeaderItem title="SandBox" endpoint="/sandbox" />
+                    <HeaderItem title="SandBox" endpoint="/sandbox" disabled/>
                     <HeaderItem title="Contact" endpoint="/#contact" />
                 </div>
             </div>

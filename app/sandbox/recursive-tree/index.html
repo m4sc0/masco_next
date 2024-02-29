@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <canvas id="fractalCanvas" width="800" height="500"
+      style="border:1px solid #000000;"></canvas>
+    <div>
+      Angle: <input type="range" id="angleSlider" min="0" max="60" value="30"
+        oninput="drawTree()">
+      Length Factor: <input type="range" id="lengthSlider" min="50" max="90"
+        value="75" step="1" oninput="drawTree()">
+      Depth: <input type="range" id="depthSlider" min="1" max="15" value="10"
+        oninput="drawTree()">
+    </div>
+    <div>
+      <div>Angle: <span id="angleText"></span></div>
+      <div>Length: <span id="lengthText"></span></div>
+      <div>Depth: <span id="depthText"></span></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
