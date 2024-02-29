@@ -2,6 +2,7 @@
 
 import { useProjects } from "@/hooks/useProjects";
 import ProjectItem from "./ProjectItem";
+import { notifyError } from "./FunctionComponent";
 
 const ProjectSection = () => {
     const { data, isLoading, error } = useProjects();
@@ -17,6 +18,7 @@ const ProjectSection = () => {
     }
 
     if (error) {
+        notifyError('Loading projects failed');
         return (
             <div className="container mx-auto p-6">
                 <h2 className="text-4xl font-bold text-start">Projects</h2>

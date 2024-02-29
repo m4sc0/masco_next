@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { notifyError } from "@/app/page";
+import { notifyError } from './FunctionComponent';
 
 interface HeaderItemProps {
     title: string;
