@@ -21,7 +21,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsButtonDisabled(true);
-        const endpoint = 'http://api.philiploebl.online/send-email';
+        const endpoint = 'https://api.philiploebl.online/send-email';
 
         const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
         
