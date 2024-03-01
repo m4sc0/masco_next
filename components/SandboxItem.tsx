@@ -1,5 +1,5 @@
 import FrostedBlock from "./FrostedBlock";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface SandboxItemProps {
     title: string;

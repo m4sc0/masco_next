@@ -1,6 +1,6 @@
 import FrostedBlock from "./FrostedBlock";
 import React from 'react';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { ArrowUpRight, Github } from "react-bootstrap-icons";
 
 interface ProjectItemProps {
