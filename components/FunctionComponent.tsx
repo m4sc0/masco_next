@@ -51,3 +51,16 @@ export const notifyWarn = (text: string) => {
         theme: "dark"
     })
 }
+
+export const notifySuccess = (text: string) => {
+    toast.success(text, {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark"
+    })
+}
