@@ -4,7 +4,13 @@ import Image from "next/image";
 import { useEffect, useState } from 'react';
 import { notifyInfo } from "./FunctionComponent";
 
-const Background = () => {
+interface BackgroundProps {
+    interactive: boolean;
+}
+
+const Background: React.FC<BackgroundProps> = ({
+    interactive
+}) => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [colorIndex, setColorIndex] = useState(0);
     const [cheats, setCheats] = useState(false);
@@ -12,16 +18,18 @@ const Background = () => {
     let konamiIndex = 0;
 
     useEffect(() => {
-        const updateMousePosition = (event: any) => {
-            setMousePosition({ x: event.clientX, y: event.clientY });
-        };
-
-        window.addEventListener('mousemove', updateMousePosition);
-
-        return () => {
-            window.removeEventListener('mousemove', updateMousePosition);
-        };
-    }, []);
+        if (interactive) {
+            const updateMousePosition = (event: any) => {
+                setMousePosition({ x: event.clientX, y: event.clientY });
+            };
+    
+            window.addEventListener('mousemove', updateMousePosition);
+    
+            return () => {
+                window.removeEventListener('mousemove', updateMousePosition);
+            };
+        }
+    }, [interactive]);
 
     useEffect(() => {
         const checkKonamiCode = (event: any) => {
@@ -30,10 +38,10 @@ const Background = () => {
                 if (konamiIndex === konamiCode.length) {
                     notifyInfo('Konami Cheat activated');
                     setCheats(true);
-                    konamiIndex = 0; // Reset for potential reuse
+                    konamiIndex = 0;
                 }
             } else {
-                konamiIndex = 0; // Reset if the sequence is broken
+                konamiIndex = 0;
             }
         };
 
@@ -56,7 +64,7 @@ const Background = () => {
 
             const draw = () => {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+                
                 if (cheats) {
                     const hue = colorIndex % 360;
                     ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
@@ -65,12 +73,18 @@ const Background = () => {
                     ctx.fillStyle = 'white';
                 }
 
-                ctx.beginPath();
-                ctx.arc(mousePosition.x, mousePosition.y, 100, 0, 2 * Math.PI);
+                if (interactive) {
+                    ctx.beginPath();
+                    ctx.arc(mousePosition.x, mousePosition.y, 100, 0, 2 * Math.PI);
+                } else {
+                    ctx.beginPath();
+                    ctx.rect(0, 0, canvas.width, canvas.height);
+                }
+
                 ctx.fill();
 
                 frameId = requestAnimationFrame(draw);
-            };
+            }
 
             draw();
 
@@ -78,7 +92,7 @@ const Background = () => {
                 cancelAnimationFrame(frameId);
             };
         }
-    }, [mousePosition, colorIndex, cheats]);
+    }, [mousePosition, colorIndex, cheats, interactive]);
 
     return (
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>

@@ -14,7 +14,7 @@ export const useSkills = () => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const res = await fetch('http://api.philiploebl.online/portfolio/skills');
+                const res = await fetch('https://api.philiploebl.online/portfolio/skills');
                 // const res = await fetch('http://localhost:8080/portfolio/skills');
                 if (!res.ok) {
                     throw new Error('HTTP Error! status: ' + res.status);

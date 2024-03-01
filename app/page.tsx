@@ -17,7 +17,7 @@ export default function Home() {
     return (
         <>
             <FunctionComponent />
-            <Background />
+            <Background interactive={true} />
             <Header />
             <ToastContainer />
             <MainText title="Hello, I'm Philip">
