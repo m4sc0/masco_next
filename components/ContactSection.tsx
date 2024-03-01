@@ -29,6 +29,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
         try {
             const response = await fetch(endpoint, {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json',
                 },
