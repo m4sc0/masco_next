@@ -4,6 +4,7 @@ import { ChangeEvent, useState } from "react";
 import FrostedBlock from "./FrostedBlock";
 import InputItem from "./InputItem";
 import { InputType } from "@/types/types";
+import { notifyError, notifySuccess } from "./FunctionComponent";
 
 interface ContactSectionProps {
     className?: string;
@@ -39,11 +40,13 @@ const ContactSection: React.FC<ContactSectionProps> = ({
             });
     
             if (!response.ok) {
+                notifyError("Message couldn't be sent!");
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
     
             const data = await response.json();
             console.log('Success:', data);
+            notifySuccess('Message sent!');
     
             // Optionally reset form fields here
             setName('');
