@@ -1,6 +1,19 @@
 import { Github, Linkedin, Twitter } from 'react-bootstrap-icons';
+import { Toggler } from './Toggler';
 
-export const Footer = () => {
+interface FooterProps {
+    isInteractive: boolean;
+    setIsInteractive: (value: boolean) => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({
+    isInteractive,
+    setIsInteractive
+}) => {
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIsInteractive(event.target.checked);
+    };
+
     return (
         <footer className="bottom-0 left-0 w-full bg-neutral-900/10 text-neutral-300 p-8 backdrop-blur-md border-t border-t-neutral-100/20">
             <div className="max-w-4xl mx-auto text-center">
@@ -16,10 +29,11 @@ export const Footer = () => {
                         <Linkedin />
                     </a>
                 </div>
+                <Toggler onClick={handleCheckboxChange} value={isInteractive} text='Interactive Mode' />
                 <div className="mt-8 text-sm">
                     <p>© {new Date().getFullYear()} Philip Löbl. All rights reserved.</p>
                 </div>
             </div>
         </footer>
-    )
+    );
 }

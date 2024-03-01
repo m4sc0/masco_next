@@ -70,7 +70,7 @@ const Background: React.FC<BackgroundProps> = ({
                     ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
                     setColorIndex(colorIndex + 0.025);
                 } else {
-                    ctx.fillStyle = 'white';
+                    ctx.fillStyle = 'hsl(0, 0%, 25%)';
                 }
 
                 if (interactive) {

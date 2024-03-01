@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/legacy/image";
 import Header from "@/components/Header";
 import MainText from "@/components/MainText";
@@ -12,12 +14,15 @@ import { Footer } from "@/components/Footer";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify";
 import FunctionComponent from "@/components/FunctionComponent";
+import { useState } from "react";
 
 export default function Home() {
+    const [isInteractive, setIsInteractive] = useState(false);
+
     return (
         <>
             <FunctionComponent />
-            <Background interactive={true} />
+            <Background interactive={isInteractive} />
             <Header />
             <ToastContainer />
             <MainText title="Hello, I'm Philip">
@@ -29,7 +34,7 @@ export default function Home() {
             <ProjectSection />
             <Breaker />
             <ContactSection className="mb-20" />
-            <Footer />
+            <Footer isInteractive={isInteractive} setIsInteractive={setIsInteractive}/>
         </>
     );
 }
