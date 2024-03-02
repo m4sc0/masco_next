@@ -18,7 +18,7 @@ export const SandboxItem: React.FC<SandboxItemProps> = ({
     className,
     children
 }) => {
-    image = undefined;
+    
 
     return (
         <FrostedBlock className={className + " p-4"}>

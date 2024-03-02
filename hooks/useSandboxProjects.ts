@@ -17,7 +17,7 @@ export const useSandboxProjects = () => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const res = await fetch('http://api.philiploebl.online/sandbox/projekte');
+                const res = await fetch('https://api.philiploebl.online/sandbox/projekte');
                 if (!res.ok) {
                     throw new Error('HTTP Error! status: ' + res.status);
                 }
