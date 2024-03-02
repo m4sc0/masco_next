@@ -4,7 +4,7 @@ import { ChangeEvent, useState } from "react";
 import FrostedBlock from "./FrostedBlock";
 import InputItem from "./InputItem";
 import { InputType } from "@/types/types";
-import { notifyError, notifySuccess } from "./FunctionComponent";
+import { notifyError, notifySuccess, notifyWarn } from "./FunctionComponent";
 
 interface ContactSectionProps {
     className?: string;
@@ -16,11 +16,22 @@ const ContactSection: React.FC<ContactSectionProps> = ({
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
-    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const [buttonText, setButtonText] = useState('Send');
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (isButtonDisabled) {
+            notifyWarn('Contact form is currently disabled for maintenance.');
+            return;
+        }
+
+        if (name === '' || email === '' || message === '') {
+            notifyError('Please enter your data.');
+            return;
+        }
+
         setIsButtonDisabled(true);
         const endpoint = 'https://api.philiploebl.online/send-email';
 
@@ -53,7 +64,6 @@ const ContactSection: React.FC<ContactSectionProps> = ({
             setEmail('');
             setMessage('');
 
-
             for (let i = 30; i > 0; i--) {
                 setButtonText(`Send (${i})`);
                 await sleep(1000);
@@ -80,7 +90,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
                 <InputItem identifier="message" title="Message" >
                     <textarea name="message" id="message" cols={30} rows={10} className="p-2 rounded-lg frosted" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
                 </InputItem>
-                <button type="submit" className={`p-4 rounded-lg ${isButtonDisabled ? "bg-neutral-700" : "bg-purple-600 hover:bg-purple-800"}`} disabled={isButtonDisabled}>{buttonText}</button>
+                <button type="submit" className={`p-4 rounded-lg ${isButtonDisabled ? "bg-neutral-700" : "bg-purple-600 hover:bg-purple-800"}`}>{buttonText}</button>
             </form>
         </FrostedBlock>
     );

@@ -19,18 +19,18 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="max-w-4xl mx-auto text-center">
                 <p>Made with ❤️ and Next.js</p>
                 <div className="flex justify-center space-x-4 mt-4">
-                    <a href="https://twitter.com/yourhandle" className="hover:text-white transition-colors duration-200">
+                    <a href="https://twitter.com/yourhandle" target='_blank' className="hover:text-white transition-colors duration-200">
                         <Twitter />
                     </a>
-                    <a href="https://github.com/yourhandle" className="hover:text-white transition-colors duration-200">
+                    <a href="https://github.com/yourhandle" target='_blank' className="hover:text-white transition-colors duration-200">
                         <Github />
                     </a>
-                    <a href="https://linkedin.com/in/yourhandle" className="hover:text-white transition-colors duration-200">
+                    <a href="https://linkedin.com/in/yourhandle" target='_blank' className="hover:text-white transition-colors duration-200">
                         <Linkedin />
                     </a>
                 </div>
                 <Toggler onClick={handleCheckboxChange} value={isInteractive} text='Interactive Mode' />
-                <div className="mt-8 text-sm">
+                <div className="mt-8 text-sm text-neutral-500">
                     <p>© {new Date().getFullYear()} Philip Löbl. All rights reserved.</p>
                 </div>
             </div>
