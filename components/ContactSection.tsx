@@ -81,8 +81,8 @@ const ContactSection: React.FC<ContactSectionProps> = ({
     }
 
     return (
-        <FrostedBlock className={"container mx-auto p-6 " + className}>
-            <h2 className="text-4xl font-bold flex-start" id="contact">Contact me</h2>
+        <FrostedBlock className={"container mx-auto p-6 " + className} id="contact">
+            <h2 className="text-4xl font-bold flex-start">Contact me</h2>
             <hr className="my-5" />
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <InputItem type={InputType.Text} identifier="name" title="Name" onChange={handleInputChange(setName)} value={name} />
