@@ -4,6 +4,7 @@ import { useSandboxProjects } from "@/hooks/useSandboxProjects";
 import ProjectItem from "./ProjectItem";
 import FrostedBlock from "./FrostedBlock";
 import { SandboxItem } from "./SandboxItem";
+import { notifyError } from "./FunctionComponent";
 
 export const SandboxSection = () => {
     const { data, isLoading, error } = useSandboxProjects();
@@ -19,6 +20,7 @@ export const SandboxSection = () => {
     }
 
     if (error) {
+        notifyError('Couldn\'t load the projects');
         return (
             <div className="container mx-auto p-6">
                 <h2 className="text-4xl font-bold text-start">Projects</h2>

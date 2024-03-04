@@ -2,6 +2,7 @@
 
 import { useStrichlisten } from "@/hooks/useStrichlisten";
 import { StrichlisteItem } from "./StrichlisteItem";
+import { notifyError } from "./FunctionComponent";
 
 export const StrichlisteSection = () => {
     const { data, isLoading, error } = useStrichlisten();
@@ -17,6 +18,7 @@ export const StrichlisteSection = () => {
     }
 
     if (error) {
+        notifyError('Couldn\'t load the strichlisten');
         return (
             <div className="container mx-auto p-6">
                 <h2 className="text-4xl font-bold text-start">Strichlisten</h2>
