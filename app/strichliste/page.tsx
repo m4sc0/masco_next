@@ -1,17 +1,11 @@
-"use client";
-
 import Background from "@/components/Background";
 import { Breaker } from "@/components/Breaker";
-import { Footer } from "@/components/Footer";
 import FunctionComponent from "@/components/FunctionComponent";
 import Header from "@/components/Header";
 import MainText from "@/components/MainText";
 import { StrichlisteSection } from "@/components/StrichlisteSection";
-import { useState } from "react";
 
 export default function Strichliste() {
-    const [isInteractive, setIsInteractive] = useState(false);
-
     return (
         <>
             <FunctionComponent />
@@ -25,8 +19,6 @@ export default function Strichliste() {
             <StrichlisteSection />
 
             <Breaker />
-
-            <Footer isInteractive={isInteractive} setIsInteractive={setIsInteractive} />
         </>
     );
 }
