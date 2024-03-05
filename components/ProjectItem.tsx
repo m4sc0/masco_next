@@ -4,12 +4,12 @@ import Image from "next/legacy/image";
 import { ArrowUpRight, Github } from "react-bootstrap-icons";
 
 export enum ProjectStatus {
-    COMPLETED = 'Completed',
-    IN_PROGRESS = 'In Progress',
-    PLANNED = 'Planned',
-    ON_HOLD = 'On Hold',
-    CANCELLED = 'Cancelled',
-    ARCHIVED = 'Archived'
+    COMPLETED = 'COMPLETED',
+    IN_PROGRESS = 'IN_PROGRESS',
+    PLANNED = 'PLANNED',
+    ON_HOLD = 'ON_HOLD',
+    CANCELLED = 'CANCELLED',
+    ARCHIVED = 'ARCHIVED'
 }
 
 interface ProjectItemProps {
@@ -39,21 +39,23 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
         return text.split('_').map(word => word[0] + word.slice(1).toLowerCase()).join(' ');
     }
 
-    const statusColor = {
+    const statusToColorClass = {
         [ProjectStatus.COMPLETED]: 'bg-green-500',
         [ProjectStatus.IN_PROGRESS]: 'bg-yellow-500',
         [ProjectStatus.PLANNED]: 'bg-blue-500',
         [ProjectStatus.ON_HOLD]: 'bg-orange-500',
         [ProjectStatus.CANCELLED]: 'bg-red-500',
-        [ProjectStatus.ARCHIVED]: 'bg-gray-500'
+        [ProjectStatus.ARCHIVED]: 'bg-gray-500',
     };
+
+    const colorClass = statusToColorClass[status] || 'bg-neutral-500';
 
     return (
         <FrostedBlock className={className + " p-4 rounded-lg flex flex-col justify-between"}>
             <div>
                 <div className="flex items-center justify-between">
                     <h3 className="text-2xl font-bold">{title}</h3>
-                    <div className={statusColor[ProjectStatus[status]] + ' py-2 px-4 rounded-lg text-neutral-900 font-bold'}>{convertText(ProjectStatus[status])}</div>
+                    <div className={colorClass + ' py-2 px-4 rounded-lg text-neutral-900 font-bold'}>{convertText(status)}</div>
                 </div>
                 <div className="flex justify-between gap-2 p-2">
                     <p className="text-justify">{description}</p>
