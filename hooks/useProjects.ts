@@ -1,8 +1,10 @@
+import { ProjectStatus } from "@/components/ProjectItem";
 import { useEffect, useState } from "react"
 
 interface Project {
     id: number;
     title: string;
+    status: ProjectStatus;
     description: string;
     github: string | undefined;
     showcase: string | undefined;

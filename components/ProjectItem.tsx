@@ -3,9 +3,19 @@ import React from 'react';
 import Image from "next/legacy/image";
 import { ArrowUpRight, Github } from "react-bootstrap-icons";
 
+export enum ProjectStatus {
+    COMPLETED = 'Completed',
+    IN_PROGRESS = 'In Progress',
+    PLANNED = 'Planned',
+    ON_HOLD = 'On Hold',
+    CANCELLED = 'Cancelled',
+    ARCHIVED = 'Archived'
+}
+
 interface ProjectItemProps {
     title: string;
     description?: string;
+    status: ProjectStatus;
     github?: string;
     showcase?: string;
     image?: string;
@@ -16,6 +26,7 @@ interface ProjectItemProps {
 const ProjectItem: React.FC<ProjectItemProps> = ({
     title,
     description,
+    status,
     github,
     showcase,
     image,
@@ -24,10 +35,26 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
 }) => {
     if (image === null) image = undefined;
 
+    const convertText = (text: string) => {
+        return text.split('_').map(word => word[0] + word.slice(1).toLowerCase()).join(' ');
+    }
+
+    const statusColor = {
+        [ProjectStatus.COMPLETED]: 'bg-green-500',
+        [ProjectStatus.IN_PROGRESS]: 'bg-yellow-500',
+        [ProjectStatus.PLANNED]: 'bg-blue-500',
+        [ProjectStatus.ON_HOLD]: 'bg-orange-500',
+        [ProjectStatus.CANCELLED]: 'bg-red-500',
+        [ProjectStatus.ARCHIVED]: 'bg-gray-500'
+    };
+
     return (
         <FrostedBlock className={className + " p-4 rounded-lg flex flex-col justify-between"}>
             <div>
-                <h3 className="text-2xl font-bold">{title}</h3>
+                <div className="flex items-center justify-between">
+                    <h3 className="text-2xl font-bold">{title}</h3>
+                    <div className={statusColor[ProjectStatus[status]] + ' py-2 px-4 rounded-lg text-neutral-900 font-bold'}>{convertText(ProjectStatus[status])}</div>
+                </div>
                 <div className="flex justify-between gap-2 p-2">
                     <p className="text-justify">{description}</p>
                 </div>
@@ -35,7 +62,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
             </div>
             {image !== undefined ? (
                 <div className="my-2 relative" style={{ width: '100%', height: '0', paddingBottom: '56.25%' }}>
-                    <Image src={'/images/' + image} alt={title} layout="fill" objectFit="cover" className="rounded-lg"/>
+                    <Image src={'/images/' + image} alt={title} layout="fill" objectFit="cover" className="rounded-lg" />
                 </div>
             ) : (
                 <div className="flex justify-center items-center">
