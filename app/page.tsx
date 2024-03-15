@@ -13,7 +13,6 @@ import { Footer } from "@/components/Footer";
 
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify";
-import FunctionComponent from "@/components/FunctionComponent";
 import { useState } from "react";
 
 export default function Home() {
@@ -21,7 +20,6 @@ export default function Home() {
 
     return (
         <>
-            <FunctionComponent />
             <Background interactive={isInteractive} />
             <Header />
             <ToastContainer />
