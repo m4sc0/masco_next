@@ -22,7 +22,7 @@ export const SandboxItem: React.FC<SandboxItemProps> = ({
 
     return (
         <FrostedBlock className={className + " p-4"}>
-            <a href={endpoint} className="text-2xl font-mono hover:text-blue-500 cursor-pointer transition-colors">/{title}</a>
+            <a href={'https://sandbox.philiploebl.online' + endpoint} className="text-2xl font-mono hover:text-blue-500 cursor-pointer transition-colors">/{title}</a>
             <p className="text-justify my-2">{description}</p>
             <hr className="my-4" />
             {image !== undefined ? (
